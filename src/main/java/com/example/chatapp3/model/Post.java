@@ -17,6 +17,7 @@ public class Post {
     @Column(nullable = false, length = 1000)
     private String content;
 
+    @Column(nullable = true)
     private String author;
 
     @Column(nullable = false, updatable = false)

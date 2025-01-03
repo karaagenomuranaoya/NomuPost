@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>新しい投稿を作成</title>
+    <link rel="stylesheet" href="/css/styles.css">
+
 </head>
 
 <body>
@@ -17,7 +19,7 @@
         <textarea id="content" name="content" th:field="*{content}" required></textarea>
         <br />
         <label for="author">投稿者:</label>
-        <input type="text" id="author" name="author" th:field="*{author}" required />
+        <input type="text" id="author" name="author" th:field="*{author}" />
         <br />
         <button type="submit">投稿</button>
     </form>

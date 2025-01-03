@@ -5,17 +5,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>投稿一覧</title>
+    <link rel="stylesheet" href="/css/styles.css">
+
 </head>
 
 <body>
     <h1>投稿一覧</h1>
     <a href="/new">新しい投稿を作成</a>
+    <form th:action="@{/reset}" method="post">
+        <button type="submit">更新</button>
+    </form>
     <ul>
         <li th:each="post : ${posts}">
             <h2 th:text="${post.title}">投稿タイトル</h2>
             <p th:text="${post.content}">投稿内容</p>
             <p>投稿者: <span th:text="${post.author}">ななしさん</span></p>
             <p>投稿日: <span th:text="${post.createdAt}">いつか</span></p>
+            <a th:href="@{/edit(id=${post.id})}">編集</a>
+            <form th:action="@{/delete}" method="post" style="display: inline;">
+                <input type="hidden" name="id" th:value="${post.id}">
+                <button type="submit">削除</button>
+            </form>
         </li>
     </ul>
 </body>

@@ -24,7 +24,11 @@ public class PostService {
 
     // 特定の投稿を取得
     public Post getPostById(Long id) {
-        return postRepository.findById(id).orElse(null);
+        return postRepository.findById(id).orElseThrow(() -> new RuntimeException("Post not found"));
+    }
+
+    public void updatePost(Post post) {
+        postRepository.save(post);
     }
 
     // 投稿を削除
