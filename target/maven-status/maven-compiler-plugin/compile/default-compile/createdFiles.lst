@@ -1,5 +1,9 @@
-com/example/chatapp3/Chatapp3Application.class
-com/example/chatapp3/service/PostService.class
+com/example/chatapp3/repository/CommentRepository.class
+com/example/chatapp3/controller/CommentController.class
 com/example/chatapp3/controller/PostController.class
 com/example/chatapp3/model/Post.class
+com/example/chatapp3/service/CommentService.class
+com/example/chatapp3/Chatapp3Application.class
+com/example/chatapp3/service/PostService.class
+com/example/chatapp3/model/Comment.class
 com/example/chatapp3/repository/PostRepository.class

@@ -22,10 +22,11 @@
             <p>投稿者: <span th:text="${post.author}">ななしさん</span></p>
             <p>投稿日: <span th:text="${post.createdAt}">いつか</span></p>
             <a th:href="@{/edit(id=${post.id})}">編集</a>
-            <form th:action="@{/delete}" method="post" style="display: inline;">
+            <form th:action="@{/deletepost}" method="post" style="display: inline;">
                 <input type="hidden" name="id" th:value="${post.id}">
                 <button type="submit">削除</button>
             </form>
+            <a th:href="@{/{postId}(postId=${post.id})}">詳細を見る</a>
         </li>
     </ul>
 </body>

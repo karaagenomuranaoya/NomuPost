@@ -3,6 +3,9 @@ package com.example.chatapp3.model;
 import jakarta.persistence.*;
 import lombok.Data;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import com.example.chatapp3.model.Comment;
+import java.util.List;
 
 @Entity
 @Data
@@ -29,4 +32,7 @@ public class Post {
             this.createdAt = LocalDateTime.now();
         }
     }
+
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL,  orphanRemoval = true)
+    private List<Comment> comments = new ArrayList<>();
 }

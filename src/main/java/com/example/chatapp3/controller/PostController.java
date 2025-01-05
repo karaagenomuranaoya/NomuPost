@@ -6,10 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import com.example.chatapp3.model.Comment;
 
 
 
@@ -37,7 +34,7 @@ public class PostController {
         return "new-post";
     }
 
-    @PostMapping("/delete")
+    @PostMapping("/deletepost")
     public String deletePost(@RequestParam Long id) {
         postService.deletePost(id);
         return "redirect:/";
@@ -58,5 +55,13 @@ public class PostController {
     @PostMapping("/reset")
     public String reset() {
         return "redirect:/";
+    }
+
+    @GetMapping("/{postId}")
+    public String getPostDetails(@PathVariable Long postId, Model model) {
+        Post post = postService.getPostById(postId);
+        model.addAttribute("post", post);
+        model.addAttribute("comment", new Comment());
+        return "post-detail";
     }
 }
