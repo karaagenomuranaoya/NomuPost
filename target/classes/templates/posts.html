@@ -4,31 +4,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>投稿一覧</title>
+    <title>のむポスト</title>
     <link rel="stylesheet" href="/css/styles.css">
-
 </head>
 
 <body>
-    <h1>投稿一覧</h1>
-    <a href="/new">新しい投稿を作成</a>
-    <form th:action="@{/reset}" method="post">
-        <button type="submit">更新</button>
-    </form>
-    <ul>
-        <li th:each="post : ${posts}">
-            <h2 th:text="${post.title}">投稿タイトル</h2>
-            <p th:text="${post.content}">投稿内容</p>
-            <p>投稿者: <span th:text="${post.author}">ななしさん</span></p>
-            <p>投稿日: <span th:text="${post.createdAt}">いつか</span></p>
-            <a th:href="@{/edit(id=${post.id})}">編集</a>
-            <form th:action="@{/deletepost}" method="post" style="display: inline;">
-                <input type="hidden" name="id" th:value="${post.id}">
-                <button type="submit">削除</button>
-            </form>
-            <a th:href="@{/{postId}(postId=${post.id})}">詳細を見る</a>
-        </li>
-    </ul>
+    <header class="header">
+        <h1 class="header__title">のむポスト</h1>
+        <a class="button button--new-post" href="/new">新しい投稿を作成</a>
+    </header>
+
+    <main class="container">
+        <form class="reset-form" th:action="@{/reset}" method="post">
+            <button type="submit" class="button button--refresh">更新</button>
+        </form>
+
+        <ul class="post-list">
+            <li class="post-item" th:each="post : ${posts}">
+                <article class="post">
+                    <h2 class="post__title" th:text="${post.title}">投稿タイトル</h2>
+                    <p class="post__content" th:text="${post.content}">投稿内容</p>
+                    <p class="post__meta">
+                        投稿者: <span class="post__author" th:text="${post.author}">ななしさん</span> |
+                        投稿日: <span class="post__date" th:text="${post.createdAt}">いつか</span>
+                    </p>
+                    <div class="post__actions">
+                        <a class="button button--edit" th:href="@{/edit(id=${post.id})}">編集</a>
+                        <form th:action="@{/deletepost}" method="post" style="display: inline;">
+                            <input type="hidden" name="id" th:value="${post.id}">
+                            <button type="submit" class="button button--delete">削除</button>
+                        </form>
+                        <a class="button button--details" th:href="@{/{postId}(postId=${post.id})}">詳細を見る</a>
+                    </div>
+                </article>
+            </li>
+        </ul>
+    </main>
+
+    <footer class="footer">
+        <p class="footer__text">© 2025 NomuPost</p>
+    </footer>
 </body>
 
 </html>

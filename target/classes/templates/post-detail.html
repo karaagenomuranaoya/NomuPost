@@ -4,34 +4,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>投稿詳細</title>
+    <title>ポスト詳細</title>
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 
 <body>
-    <h1 th:text="${post.title}">投稿タイトル</h1>
-    <p th:text="${post.content}">投稿内容</p>
-    <p>投稿者: <span th:text="${post.author}">ななしさん</span></p>
-    <p>投稿日: <span th:text="${post.createdAt}">いつか</span></p>
+    <header class="header">
+        <h1 class="header__title" th:text="${post.title}">投稿タイトル</h1>
+    </header>
 
-    <h2>コメント一覧</h2>
-    <ul>
-        <li th:each="comment : ${post.comments}">
-            <p th:text="${comment.content}">コメント内容</p>
-            <form th:action="@{/comments/delete}" method="post" style="display: inline;">
-                <input type="hidden" name="id" th:value="${comment.id}">
-                <input type="hidden" name="postId" th:value="${comment.post.id}">
-                <button type="submit">削除</button>
+    <main class="container">
+        <section class="post-detail">
+            <h2 class="post-detail__content" th:text="${post.content}">投稿内容</h2>
+            <p class="post-detail__meta">
+                投稿者: <span class="post-detail__author" th:text="${post.author}">ななしさん</span> |
+                投稿日: <span class="post-detail__date" th:text="${post.createdAt}">いつか</span>
+            </p>
+        </section>
+
+        <section class="comments">
+            <h2 class="comments__title">コメント一覧</h2>
+            <ul class="comments__list">
+                <li class="comments__item" th:each="comment : ${post.comments}">
+                    <p class="comments__content" th:text="${comment.content}">コメント内容</p>
+                    <form th:action="@{/comments/delete}" method="post" class="comments__delete-form">
+                        <input type="hidden" name="id" th:value="${comment.id}">
+                        <input type="hidden" name="postId" th:value="${comment.post.id}">
+                        <button type="submit" class="button button--delete">削除</button>
+                    </form>
+                </li>
+            </ul>
+        </section>
+
+        <section class="comment-form">
+            <h2 class="comment-form__title">コメントを追加</h2>
+            <form th:action="@{/comments}" th:object="${comment}" method="post" class="comment-form__form">
+                <input type="hidden" name="post" th:value="${post.id}">
+                <textarea name="content" class="form__textarea" th:field="*{content}" placeholder="コメントを入力してください"
+                    required></textarea>
+                <button type="submit" class="button button--submit">送信</button>
             </form>
-        </li>
-    </ul>
+        </section>
+    </main>
 
-    <h2>コメントを追加</h2>
-    <form th:action="@{/comments}" th:object="${comment}" method="post">
-        <input type="hidden" name="post" th:value="${post.id}">
-        <textarea name="content" th:field="*{content}" placeholder="コメントを入力してください" required></textarea>
-        <button type="submit">送信</button>
-    </form>
+    <footer class="footer">
+        <p class="footer__text">© 2025 PostDetail</p>
+    </footer>
 </body>
 
 </html>

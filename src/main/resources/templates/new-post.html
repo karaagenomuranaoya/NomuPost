@@ -4,25 +4,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>新しい投稿を作成</title>
+    <title>新規ポスト</title>
     <link rel="stylesheet" href="/css/styles.css">
-
 </head>
 
 <body>
-    <h1>新しい投稿を作成</h1>
-    <form th:action="@{/}" th:object="${post}" method="post">
-        <label for="title">タイトル:</label>
-        <input type="text" id="title" name="title" th:field="*{title}" required />
-        <br />
-        <label for="content">内容:</label>
-        <textarea id="content" name="content" th:field="*{content}" required></textarea>
-        <br />
-        <label for="author">投稿者:</label>
-        <input type="text" id="author" name="author" th:field="*{author}" />
-        <br />
-        <button type="submit">投稿</button>
-    </form>
+    <header class="header">
+        <h1 class="header__title">新規ポスト</h1>
+    </header>
+
+    <main class="container">
+        <section class="form-section">
+            <form th:action="@{/}" th:object="${post}" method="post" class="form">
+                <div class="form__group">
+                    <label for="title" class="form__label">タイトル:</label>
+                    <input type="text" id="title" name="title" th:field="*{title}" class="form__input" required />
+                </div>
+                <div class="form__group">
+                    <label for="content" class="form__label">内容:</label>
+                    <textarea id="content" name="content" th:field="*{content}" class="form__textarea"
+                        required></textarea>
+                </div>
+                <div class="form__group">
+                    <label for="author" class="form__label">投稿者:</label>
+                    <input type="text" id="author" name="author" th:field="*{author}" class="form__input" />
+                </div>
+                <div class="form__actions">
+                    <button type="submit" class="button button--submit">投稿</button>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p class="footer__text">© 2025 NewPost</p>
+    </footer>
 </body>
 
 </html>
