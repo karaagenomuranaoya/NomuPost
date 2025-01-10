@@ -26,7 +26,7 @@
                     <p class="post__content" th:text="${post.content}">投稿内容</p>
                     <p class="post__meta">
                         投稿者: <span class="post__author" th:text="${post.author}">ななしさん</span> |
-                        投稿日: <span class="post__date" th:text="${post.createdAt}">いつか</span>
+                        投稿日: <span class="post__date" th:text="${post.createdAt}"></span>
                     </p>
                     <div class="post__actions">
                         <a class="button button--edit" th:href="@{/edit(id=${post.id})}">編集</a>
